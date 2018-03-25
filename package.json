@@ -1,0 +1,15 @@
+{
+  "name": "html-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastparse": "^1.1.1",
+    "loader-utils": "^1.1.0"
+  }
+}
