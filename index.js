@@ -24,7 +24,6 @@ module.exports = function(content) {
     let _content = [content];
     const urlHash = {};
     res.reverse();
-    console.log(res)
     res.forEach(item => {
         switch (item.type) {
             case constants.ATTR:
@@ -38,8 +37,6 @@ module.exports = function(content) {
                 urlHash[placeholderUrl] = item.value;
 
                 let _temp = _content.pop();
-                console.log('========')
-                console.log(_temp.substr(item.start))
                 _content.push(_temp.substr(item.start + item.length));
                 _content.push(placeholderUrl);
                 _content.push(_temp.substr(0, item.start));
@@ -68,11 +65,9 @@ module.exports = function(content) {
 
             let urlToRequest = getSimpleRequire(urlHash[match], resourcePath);
 
-            //return urlToRequest;
-            return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(urlHash[match], root)) + ') + "';
+            return urlToRequest;
         }) + ";";
 
-    console.log(content);
     return content;
 
 }
