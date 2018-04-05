@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "node ./dist.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-loader": "^0.5.5",
+    "webpack-cli": "^2.0.14"
+  }
+}

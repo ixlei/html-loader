@@ -17,11 +17,14 @@ module.exports = function(content) {
         validateRequestUrl
     } = makeHelpers(loaderContext);
 
-    const res = attrParser(content);
+    const res = attrParser(content, function(type, tag) {
+        return tag === 'script' || tag === 'img';
+    });
 
     let _content = [content];
     const urlHash = {};
-
+    res.reverse();
+    console.log(res)
     res.forEach(item => {
         switch (item.type) {
             case constants.ATTR:
@@ -35,7 +38,9 @@ module.exports = function(content) {
                 urlHash[placeholderUrl] = item.value;
 
                 let _temp = _content.pop();
-                _content.push(_temp.substr(item.start));
+                console.log('========')
+                console.log(_temp.substr(item.start))
+                _content.push(_temp.substr(item.start + item.length));
                 _content.push(placeholderUrl);
                 _content.push(_temp.substr(0, item.start));
                 break;
@@ -47,23 +52,27 @@ module.exports = function(content) {
     _content = _content.join('');
 
     let exportsString = "module.exports = ";
-    if (config.exportAsDefault) {
+    if (options.exportAsDefault) {
         exportsString = "exports.default = ";
 
-    } else if (config.exportAsEs6Default) {
+    } else if (options.exportAsEs6Default) {
         exportsString = "export default ";
     }
+    _content = JSON.stringify(_content);
 
-    return exportsString +
+    content = exportsString +
         _content.replace(placeholderUrl, (match) => {
-            if (urlHash[match]) {
+            if (!urlHash[match]) {
                 return match;
             }
 
             let urlToRequest = getSimpleRequire(urlHash[match], resourcePath);
 
-            return urlToRequest;
-        })
+            //return urlToRequest;
+            return '" + require(' + JSON.stringify(loaderUtils.urlToRequest(urlHash[match], root)) + ') + "';
+        }) + ";";
 
+    console.log(content);
+    return content;
 
 }
