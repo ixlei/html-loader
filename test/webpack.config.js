@@ -1,8 +1,10 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     entry: {
-        index: './example/index.html',
+        index: './index.js',
         //inde: './index.js'
     },
     output: {
@@ -30,10 +32,19 @@ module.exports = {
                     //         root: path.resolve(__dirname, './')
                     //     }
                     // }]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                use: [
+                    'url-loader?limit=10000',
+                    'img-loader'
+                ]
             }
         ]
     },
     plugins: [
-
+        new HtmlWebpackPlugin({
+            template: './example/index.html'
+        })
     ]
 }

@@ -1,15 +1,32 @@
 {
-    "name": "html-loader",
-    "version": "1.0.0",
-    "description": "",
+    "name": "html-res-loader",
+    "version": "0.0.1",
+    "description": "html resource loader for webpack",
     "main": "index.js",
     "scripts": {
         "test": "node ./test/index.js"
     },
-    "author": "",
+    "author": "ixlei",
     "license": "ISC",
     "dependencies": {
         "fastparse": "^1.1.1",
         "loader-utils": "^1.1.0"
-    }
+    },
+    "directories": {
+        "test": "test"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ixlei/html-loader.git"
+    },
+    "keywords": [
+        "webpack",
+        "loader",
+        "html"
+    ],
+    "bugs": {
+        "url": "https://github.com/ixlei/html-loader/issues"
+    },
+    "homepage": "https://github.com/ixlei/html-loader#readme"
 }

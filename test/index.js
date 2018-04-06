@@ -14,7 +14,7 @@
 // console.log(res);
 
 function dd() {
-    window.name = 'ggg'
+    var n = 'ggg';
 }
 
 dd();

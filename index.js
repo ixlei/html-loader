@@ -67,7 +67,6 @@ module.exports = function(content) {
 
             return urlToRequest;
         }) + ";";
-
     return content;
 
 }
