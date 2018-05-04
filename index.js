@@ -8,6 +8,7 @@ module.exports = function(content) {
     const options = loaderUtils.getOptions(this) || {};
     const resourcePath = this.resourcePath;
     const loaderContext = this;
+    const defaultTag = options.tag || ['img'];
 
     const {
         getRawRequest,
@@ -18,7 +19,7 @@ module.exports = function(content) {
     } = makeHelpers(loaderContext);
 
     const res = attrParser(content, function(type, tag) {
-        return tag === 'script' || tag === 'img';
+        return !!~defaultTag.indexOf(tag);
     });
 
     let _content = [content];
