@@ -18,7 +18,7 @@ module.exports = function(content) {
         validateRequestUrl
     } = makeHelpers(loaderContext);
 
-    const res = attrParser(content, function(type, tag) {
+    const res = attrParser(content, function(type, tag, name) {
         return !!~defaultTag.indexOf(tag);
     });
 
